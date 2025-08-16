@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tattoo.ashour</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth; /* плавная прокрутка */
+  }
+
+  /* Секции с фоном на весь экран */
+  section {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Слайды фона */
+  .bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    z-index: 0;
+  }
+  .bg-slide.active {
+    opacity: 1;
+  }
+
+  /* Текст поверх всех слайдов */
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 10;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  }
+
+  /* Картинка в центре */
+  .center-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;  /* меняем размер */
+    height: auto;
+    z-index: 20;       /* выше текста и слайдов */
+  }
+</style>
+</head>
+<body>
+
+<section>
+  <!-- Фоновые слайды -->
+  <div class="bg-slide" style="background-image: url('1651657428_a1f955.jpg');"></div>
+  <div class="bg-slide" style="background-image: url('Norman_Reedus_Men_Eric_Guillemain_Black_and_white_530897_2560x1440.jpg');"></div>
+  <div class="bg-slide" style="background-image: url('ulitsa_luzha_otrazhenie_139688_1920x1080.jpg');"></div>
+
+  <!-- Текст поверх всех слайдов -->
+  <div class="text"></div>
+
+  <!-- Картинка в центре -->
+  <img src="TATTOO-ASHOUR-BODEN-16-08-2025.png" class="center-image">
+</section>
+
+<section style="background-color: #111;">
+  <div class="text">Вторая секция с текстом</div>
+</section>
+
+<section style="background-color: #333;">
+  <div class="text">Третья секция</div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.bg-slide');
+  let current = 0;
+
+  function nextSlide() {
+    slides[current].classList.remove('active'); // скрываем текущий
+    current = (current + 1) % slides.length;    // следующая
+    slides[current].classList.add('active');    // показываем новый
+  }
+
+  slides[current].classList.add('active'); // первая картинка видна сразу
+  setInterval(nextSlide, 4000);            // смена каждые 4 секунды
+</script>
+
+</body>
+</html>
